@@ -1,0 +1,122 @@
+/* ============================================================
+   footer.css — modern site footer (orange & black language)
+   ============================================================ */
+.site-footer {
+  margin-top: 40px;
+  margin-inline: calc(var(--main-pad) * -1);
+  background: linear-gradient(180deg, #0C1119, #080B10);
+  border-top: 1px solid #202630;
+  color: #C5CAD3;
+  position: relative;
+  overflow: hidden;
+}
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(700px 220px at 50% -40%, rgba(255, 101, 0, .12), transparent 70%);
+  pointer-events: none;
+}
+
+.sf-top {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 46px 28px 6px;
+  display: grid;
+  grid-template-columns: 1.5fr .75fr .75fr 1.15fr;
+  gap: 38px;
+}
+.sf-logo { display: flex; align-items: center; gap: 12px; }
+.sf-ball {
+  width: 44px; height: 44px; border-radius: 50%;
+  position: relative; flex: none;
+  background: var(--brand-grad);
+  box-shadow: 0 8px 24px rgba(255, 101, 0, .28);
+}
+.sf-ball::before, .sf-ball::after {
+  content: ""; position: absolute; inset: 5px; border-radius: 50%;
+  border: 2.5px solid #14181F;
+  border-left-color: transparent; border-bottom-color: transparent;
+}
+.sf-ball::after { transform: rotate(135deg); opacity: .65; }
+.sf-logo b { display: block; font-family: var(--font-brand); font-size: 19px; font-weight: 700; letter-spacing: .5px; color: #fff; }
+.sf-logo small { display: block; font-size: 11px; color: #8F98A8; margin-top: 2px; }
+.sf-brand p { font-size: 12.5px; line-height: 2.1; color: #8F98A8; margin: 16px 0 18px; max-width: 34ch; }
+.sf-social { display: flex; gap: 8px; }
+.sf-soc {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: grid; place-items: center;
+  background: #151B24; border: 1px solid #222B35; color: #AEB6C5;
+  transition: transform var(--t-fast) var(--ease), background var(--t-fast), color var(--t-fast), box-shadow var(--t-fast);
+}
+.sf-soc svg { width: 17px; height: 17px; }
+.sf-soc:hover { background: var(--brand-grad); color: #fff; border-color: transparent; transform: translateY(-3px); box-shadow: var(--shadow-glow); }
+
+.sf-col h4 {
+  position: relative;
+  margin: 4px 0 16px; padding-inline-start: 11px;
+  font-size: 13px; font-weight: 700; color: #fff;
+}
+.sf-col h4::before {
+  content: ""; position: absolute; inset-inline-start: 0; top: 6px;
+  width: 4px; height: 14px; border-radius: 99px;
+  background: var(--brand-grad);
+}
+.sf-col a, .sf-col > span {
+  display: flex; align-items: center; gap: 9px;
+  padding: 5px 0;
+  color: #8F98A8; font-size: 12.5px; text-decoration: none;
+  transition: color var(--t-fast), transform var(--t-fast);
+}
+.sf-col a:hover { color: #FF830D; transform: translateX(-3px); }
+.sf-contact > span svg { width: 15px; height: 15px; color: #FF830D; flex: none; }
+.sf-contact > span { line-height: 1.9; }
+
+.sf-news {
+  position: relative;
+  max-width: 1124px;
+  margin: 30px auto 0;
+  padding: 20px 26px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 22px; flex-wrap: wrap;
+  background: linear-gradient(120deg, #151B24, #0D131B);
+  border: 1px solid #222B35;
+  border-radius: 14px;
+}
+.sf-news-txt b { display: block; font-size: 14px; color: #fff; }
+.sf-news-txt small { display: block; font-size: 11.5px; color: #8F98A8; margin-top: 4px; }
+.sf-form { display: flex; gap: 10px; flex: 1; min-width: 250px; max-width: 420px; }
+.sf-form input {
+  flex: 1; min-width: 0; height: 42px;
+  border-radius: 10px; border: 1px solid #26303B;
+  background: #10161E; color: #fff;
+  padding: 0 14px; font-family: inherit; font-size: 12.5px; outline: none;
+  transition: border-color var(--t-fast);
+}
+.sf-form input::placeholder { color: #697486; }
+.sf-form input:focus { border-color: var(--brand); }
+.sf-form .btn { flex: none; }
+
+.sf-bottom {
+  position: relative;
+  margin-top: 34px;
+  border-top: 1px solid #1A212B;
+  padding: 16px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; flex-wrap: wrap;
+  font-size: 11.5px; color: #697486;
+}
+.sf-made i { color: #FF6500; font-style: normal; }
+
+@media (max-width: 1080px) {
+  .sf-top { grid-template-columns: 1fr 1fr; gap: 30px; }
+}
+@media (max-width: 960px) {
+  .site-footer { margin-inline: 0; }
+}
+@media (max-width: 620px) {
+  .sf-top { grid-template-columns: 1fr; gap: 26px; padding-top: 36px; }
+  .sf-news { margin-inline: 16px; }
+  .sf-bottom { justify-content: center; text-align: center; }
+}

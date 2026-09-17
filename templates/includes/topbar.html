@@ -1,0 +1,40 @@
+<header class="topbar">
+  <button type="button" class="icon-btn menu-btn" id="menu-btn" aria-label="منوی باشگاه" aria-haspopup="dialog" aria-expanded="false">
+    <span id="ic-menu" style="display:contents"></span>
+  </button>
+  <div class="tb-greet">
+    <h1 class="tb-hello" id="tb-hello">سلام</h1>
+    <div class="tb-date" id="tb-date"></div>
+  </div>
+
+  <div class="tb-actions">
+    <div class="search" id="search-wrap">
+      <div class="search-box" id="search-box">
+        <span id="ic-search" style="display:contents"></span>
+        <input class="search-input" id="search-input" type="search" placeholder="جستجو در باشگاه…" aria-label="جستجو">
+        <span class="search-kbd" aria-hidden="true">/</span>
+      </div>
+      <div class="search-results hidden" id="search-results" role="listbox" aria-label="نتایج جستجو"></div>
+    </div>
+
+    <div style="position:relative">
+      <button type="button" class="icon-btn" id="bell-btn" aria-label="اعلان‌ها" aria-haspopup="dialog">
+        <span id="ic-bell" style="display:contents"></span>
+        <span class="badge-dot hidden" data-notif-badge></span>
+      </button>
+      <div class="dropdown notif-panel hidden" id="notif-panel" role="dialog" aria-label="مرکز اعلان‌ها"></div>
+    </div>
+
+    <div style="position:relative;display:flex;align-items:center">
+      <button type="button" class="avatar-btn" id="avatar-btn" aria-haspopup="menu" aria-expanded="false">
+        <span class="avatar">ه</span>
+        <span class="ab-meta">
+          <span class="ab-name">احمد احمدی</span>
+          <span class="ab-role">بازیکن</span>
+        </span>
+        <span id="ic-chev" style="display:contents"></span>
+      </button>
+      <div class="dropdown menu hidden" id="profile-menu" role="menu" aria-label="منوی پروفایل"></div>
+    </div>
+  </div>
+</header>

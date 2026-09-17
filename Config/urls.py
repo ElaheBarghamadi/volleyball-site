@@ -17,6 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from core.views import PAGES, page
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # صفحه‌های داشبورد بازیکن: هر صفحه یک مسیر استاندارد با قالب اختصاصی
+    path('', page, {'name': 'dashboard'}, name='dashboard'),
+]
+urlpatterns += [
+    path('%s/' % name, page, {'name': name}, name=name)
+    for name in PAGES if name != 'dashboard'
 ]
