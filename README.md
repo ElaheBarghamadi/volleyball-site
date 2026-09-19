@@ -1,52 +1,74 @@
-# وب‌سایت باشگاه والیبال فراز 🏐
+# باشگاه والیبال فراز 🏐
 
-داشبورد اختصاصی بازیکن باشگاه والیبال فراز — پروژهٔ جنگو با قالب استاندارد (base + صفحه‌های جداگانه) و طراحی یکپارچهٔ نارنجی-مشکی.
+## تغییرات جدید — مدل کاربری و لندینگ
 
-## ساختار پروژه
+### ۱. پاکسازی فایل‌های اضافی
+- حذف پوشه ` .idea/ ` (تنظیمات PyCharm)
+- حذف `users/volleyball.jpg` تکراری (تصویر اصلی در `static/assets/img/hero-bg.jpg` است)
+- حذف اپ‌های خالی `dashboard / support / notifications` (بدون مدل/ویو)
+- حذف `templates/pages/registration.html` — ثبت‌نام عمومی نداریم
 
+### ۲. مدل User سفارشی (`users/models.py`)
+```python
+class User(AbstractBaseUser, PermissionsMixin):
+    username   # نام کاربری یکتا - لاگین
+    full_name  # نام و نام خانوادگی
+    phone      # موبایل 09xxxxxxxxx - یکتا + اعتبارسنجی
+    role       # admin / coach / support / player
+    password   # هش شده
+    is_active, is_staff, date_joined ...
 ```
-volleyball-site/
-├── manage.py
-├── requirements.txt
-├── Config/                    # تنظیمات پروژه (settings، urls، wsgi، asgi)
-├── core/                      # اپ صفحه‌ها: ویو تک‌صفحه‌ای با whitelist نام‌ها
-├── dashboard/ users/ support/ notifications/   # اپ‌های اصلی پروژه
-├── templates/
-│   ├── base.html              # فایل بیس: head، سایدبار، تاپ‌بار، فوتر، اسکریپت‌ها
-│   ├── includes/
-│   │   ├── topbar.html        # نوار بالای اپ
-│   │   ├── footer.html        # فوتر مدرن سایت
-│   │   ├── overlays.html      # ریشهٔ مودال/دراور/توست
-│   │   └── scripts.html       # ترتیب بارگذاری ماژول‌های JS
-│   └── pages/                 # هر صفحه یک فایل جداگانه (ارث از base.html)
-│       ├── dashboard.html  schedule.html  attendance.html  tuition.html
-│       ├── registration.html  insurance.html  progress.html
-│       └── announcements.html  profile.html  settings.html  support.html
-└── static/
-    ├── css/                   # reset، variables(توکن‌ها)، style، footer، responsive
-    ├── js/                    # ۱۲ ماژول vanilla JS (بدون فریم‌ورک)
-    └── assets/
-        ├── fonts/             # وزیرمتن + Space Grotesk (self-hosted)
-        └── img/hero-bg.jpg    # تصویر سینمایی کارت بازیکن
+- ورود فقط با **نام کاربری + رمز عبور**
+- ثبت‌نام از داخل پنل ادمین/پشتیبان انجام می‌شود، کاربر فقط وارد می‌شود
+- `AUTH_USER_MODEL = 'users.User'` در settings
+- ادمین جنگو سفارشی شده (فیلتر نقش، جستجو)
+
+**نقش‌ها:**
+- `admin` — ادمین کل
+- `coach` — مربی
+- `support` — پشتیبان
+- `player` — بازیکن (پیش‌فرض)
+
+### ۳. صفحه هوم عمومی (`/` — بدون لاگین)
+`templates/pages/home.html + static/css/home.css`
+- هدر چسبان با لوگو FARAZ و دکمه ورود
+- هیرو با تصویر `hero-bg.jpg`، آمار و CTA
+- بخش‌های: درباره، برنامه تمرین (شنبه–چهارشنبه + تعطیلی پنجشنبه/جمعه)، گالری، مربیان، تعرفه‌ها، تماس
+- کاملاً RTL و با پالت نارنجی-مشکی
+
+### ۴. لاگین (`/login/`)
+`templates/pages/login.html` بازطراحی کامل:
+- دو ستون: فرم دارک + ویژوال سینمایی
+- CSRF، نمایش خطا، remember-me، لینک بازگشت به خانه
+- پیام راهنما: ثبت‌نام فقط حضوری
+
+### ۵. مسیرها
+```
+/              → هوم عمومی (public)
+/login/        → ورود
+/logout/       → خروج
+/dashboard/    → داشبورد (login_required)
+/schedule/ /attendance/ /tuition/ /insurance/ /progress/ /announcements/ /profile/ /settings/ /support/ → داخل داشبورد
+/admin/        → پنل ادمین جنگو
 ```
 
-## اجرای محلی
+### ۶. کاربران تستی
+```
+admin    / admin123    — ادمین  — 09123456789
+coach1   / coach123    — مربی   — 09123456780
+support1 / support123  — پشتیبان — 09123456781
+player1  / player123   — بازیکن — 09123456782
+```
 
+### اجرای محلی
 ```bash
 pip install -r requirements.txt
 python manage.py migrate
-python manage.py runserver
-# سپس: http://127.0.0.1:8000
+python manage.py createsuperuser  # با username/full_name/phone/role
+python manage.py runserver  # http://127.0.0.1:8000
 ```
 
-## مسیرها
-
-`/` داشبورد · `/schedule/` برنامه تمرین · `/attendance/` حضور و غیاب · `/tuition/` شهریه ·
-`/registration/` ثبت‌نام · `/insurance/` بیمه · `/progress/` پیشرفت · `/announcements/` اعلانات ·
-`/profile/` پروفایل · `/settings/` تنظیمات · `/support/` پشتیبانی
-
-## نکته‌ها
-
-- هر صفحه URL اختصاصی دارد و قالب خودش را از `base.html` ارث می‌برد؛ ناوبری بین صفحات با لینک واقعی (MPA) است.
-- تم پیش‌فرض تاریک (پالت نارنجی/مشکی)؛ حالت روشن هم پشتیبانی می‌شود.
-- داده‌ها نمایشی‌اند و در `static/js/data.js` به‌صورت پویا تولید می‌شوند.
+### نکات
+- `ALLOWED_HOSTS = ['*']` برای تست
+- تم تاریک پیش‌فرض، فونت وزیرمتن self-hosted
+- داشبورد همچنان MPA با base.html + سایدبار و topbar داینامیک (نام/نقش از `request.user`)

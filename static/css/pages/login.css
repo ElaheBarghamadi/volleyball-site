@@ -1,0 +1,93 @@
+/* ============================================================
+   login.css — صفحه ورود باشگاه فراز (RTL, dark, orange)
+   ============================================================ */
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:var(--font, 'Vazirmatn', Tahoma, sans-serif);
+  background:#080B10; color:#E6E9EF; min-height:100vh; display:flex;
+}
+.login-wrap{ display:flex; width:100%; min-height:100vh; }
+.login-form-side{
+  flex:0 0 520px; max-width:100%; background:#0F141C;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:32px 44px; position:relative;
+  border-inline-end: 1px solid rgba(255,255,255,.06);
+}
+.login-visual{
+  flex:1; position:relative; overflow:hidden; background:#111722;
+  display:flex; align-items:stretch;
+}
+.login-visual img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.login-visual::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(8,11,16,.18) 0%, rgba(8,11,16,.72) 95%), radial-gradient(700px 400px at 70% 30%, rgba(255,101,0,.18), transparent 60%);
+}
+.visual-overlay{
+  position:relative; z-index:1; display:flex; flex-direction:column; justify-content:flex-end;
+  padding:36px 32px; width:100%;
+}
+.visual-overlay h2{ margin:0 0 8px; font-size:28px; font-weight:900; color:#fff; line-height:1.25; }
+.visual-overlay p{ margin:0; color:rgba(255,255,255,.72); font-size:14px; line-height:1.9; max-width:520px; }
+.visual-stats{ display:flex; gap:18px; margin-top:18px; }
+.visual-stats div{ background:rgba(255,255,255,.08); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:10px 14px; min-width:96px; text-align:center; }
+.visual-stats b{ display:block; color:#fff; font-size:18px; line-height:1; }
+.visual-stats small{ display:block; color:rgba(255,255,255,.6); font-size:11px; margin-top:4px; }
+
+.brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; margin-bottom:28px; }
+.brand-ball{ width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,#FF6500,#FF830D); box-shadow:0 8px 22px rgba(255,101,0,.32); position:relative; flex:0 0 auto; }
+.brand-ball::before, .brand-ball::after{ content:""; position:absolute; inset:5.5px; border-radius:50%; border:2.2px solid #0F141C; border-left-color:transparent; border-bottom-color:transparent; }
+.brand-ball::after{ transform:rotate(135deg); opacity:.6; }
+.brand b{ font-family:'Space Grotesk','Vazirmatn',sans-serif; letter-spacing:.22em; font-size:16px; color:#fff; }
+.brand small{ display:block; color:rgba(255,255,255,.55); font-size:11px; font-weight:500; }
+.login-title{ margin:0 0 6px; font-size:24px; font-weight:800; color:#fff; }
+.login-sub{ margin:0 0 22px; color:rgba(255,255,255,.58); font-size:13.5px; line-height:1.8; }
+.alert{
+  background:rgba(229,72,77,.11); border:1px solid rgba(229,72,77,.28); color:#FF8A8E;
+  padding:10px 14px; border-radius:10px; font-size:13px; margin-bottom:16px; line-height:1.7;
+}
+.alert-success{
+  background:rgba(18,166,106,.11); border-color:rgba(18,166,106,.22); color:#7EE0B6;
+}
+.alert-warning{
+  background:rgba(217,119,6,.11); border-color:rgba(217,119,6,.24); color:#FFB86A;
+}
+.alert-info{
+  background:rgba(43,140,230,.10); border-color:rgba(43,140,230,.22); color:#8AC6FF;
+}
+.field{ margin-bottom:14px; }
+.field label{ display:block; font-size:13px; font-weight:600; color:rgba(255,255,255,.82); margin-bottom:6px; }
+.field input{
+  width:100%; height:48px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+  border-radius:12px; color:#fff; font-size:14px; padding:0 14px; outline:none; transition:.2s;
+}
+.field input::placeholder{ color:rgba(255,255,255,.35); }
+.field input:focus{ border-color:rgba(255,101,0,.55); box-shadow:0 0 0 4px rgba(255,101,0,.12); background:rgba(255,255,255,.07); }
+.row-between{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin:10px 0 18px; }
+.check{ display:flex; align-items:center; gap:8px; font-size:13px; color:rgba(255,255,255,.7); cursor:pointer; user-select:none; }
+.check input{ appearance:none; width:18px; height:18px; border:1.8px solid rgba(255,255,255,.18); border-radius:6px; display:grid; place-items:center; margin:0; cursor:pointer; background:rgba(255,255,255,.04); transition:.15s; }
+.check input:checked{ background:#FF6500; border-color:#FF6500; }
+.check input:checked::after{ content:"✓"; color:#fff; font-size:11px; font-weight:800; line-height:1; }
+.link-muted{ color:rgba(255,255,255,.55); text-decoration:none; font-size:13px; }
+.link-muted:hover{ color:#FF9B35; }
+.btn-submit{
+  width:100%; height:48px; border:none; border-radius:12px;
+  background: linear-gradient(90deg,#FF6500,#FF830D); color:#fff; font-size:15px; font-weight:800;
+  cursor:pointer; box-shadow:0 10px 22px rgba(255,101,0,.28); transition:.2s;
+}
+.btn-submit:hover{ transform:translateY(-1px); box-shadow:0 14px 28px rgba(255,101,0,.32); }
+.btn-submit:active{ transform:none; }
+.btn-submit:disabled{ opacity:.6; cursor:not-allowed; transform:none; box-shadow:none; }
+.divider{ display:flex; align-items:center; gap:12px; margin:18px 0; color:rgba(255,255,255,.28); font-size:12px; }
+.divider::before, .divider::after{ content:""; flex:1; height:1px; background:rgba(255,255,255,.08); }
+.help-box{
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:12px; padding:12px 14px; font-size:12.5px; line-height:1.8; color:rgba(255,255,255,.62);
+}
+.help-box b{ color:rgba(255,255,255,.88); }
+.back-link{ position:absolute; top:18px; left:18px; color:rgba(255,255,255,.6); text-decoration:none; font-size:13px; display:inline-flex; align-items:center; gap:6px; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.04); transition:.2s; }
+.back-link:hover{ color:#fff; background:rgba(255,255,255,.08); }
+.lock-info{ display:flex; align-items:center; gap:10px; font-size:12.5px; }
+@media (max-width: 960px){
+  .login-visual{ display:none; }
+  .login-form-side{ flex:1; border-inline-end:none; padding:28px 20px; }
+  .back-link{ position:static; margin-bottom:18px; align-self:flex-start; }
+}

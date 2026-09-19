@@ -3,7 +3,7 @@
     <span id="ic-menu" style="display:contents"></span>
   </button>
   <div class="tb-greet">
-    <h1 class="tb-hello" id="tb-hello">سلام</h1>
+    <h1 class="tb-hello" id="tb-hello">سلام{% if user.is_authenticated %}، {{ user.full_name|default:user.username }}{% endif %}</h1>
     <div class="tb-date" id="tb-date"></div>
   </div>
 
@@ -27,10 +27,10 @@
 
     <div style="position:relative;display:flex;align-items:center">
       <button type="button" class="avatar-btn" id="avatar-btn" aria-haspopup="menu" aria-expanded="false">
-        <span class="avatar">ه</span>
+        <span class="avatar">{% if user.is_authenticated %}{{ user.full_name|default:user.username|slice:":1" }}{% else %}ک{% endif %}</span>
         <span class="ab-meta">
-          <span class="ab-name">احمد احمدی</span>
-          <span class="ab-role">بازیکن</span>
+          <span class="ab-name">{% if user.is_authenticated %}{{ user.full_name|default:user.username }}{% else %}مهمان{% endif %}</span>
+          <span class="ab-role">{% if user.is_authenticated %}{{ user.get_role_display }}{% else %}بازدیدکننده{% endif %}</span>
         </span>
         <span id="ic-chev" style="display:contents"></span>
       </button>

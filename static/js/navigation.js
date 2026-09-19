@@ -10,11 +10,10 @@
   var D = function () { return VB.data; };
 
   var PAGES = [
-    { id: 'dashboard', label: 'داشبورد', icon: 'dashboard', group: 'main', url: '/' },
+    { id: 'dashboard', label: 'داشبورد', icon: 'dashboard', group: 'main', url: '/dashboard/' },
     { id: 'schedule', label: 'برنامه تمرین', icon: 'schedule', group: 'main', url: '/schedule/' },
     { id: 'attendance', label: 'حضور و غیاب', icon: 'attendance', group: 'main', url: '/attendance/' },
     { id: 'tuition', label: 'شهریه', icon: 'tuition', group: 'main', url: '/tuition/' },
-    { id: 'registration', label: 'ثبت‌نام', icon: 'registration', group: 'main', url: '/registration/' },
     { id: 'insurance', label: 'بیمه', icon: 'insurance', group: 'main', url: '/insurance/' },
     { id: 'progress', label: 'پیشرفت من', icon: 'progress', group: 'main', url: '/progress/' },
     { id: 'announcements', label: 'اعلانات', icon: 'announcements', group: 'main', url: '/announcements/' },
@@ -61,7 +60,7 @@
       '<div class="up-ic">' + VB.icon('medal') + '</div>' +
       '<b>ارتقا به سطح حرفه‌ای</b>' +
       '<small>تمرین اختصاصی، آنالیز ویدیویی و بدنسازی ویژه</small>' +
-      '<button type="button" class="btn y w100" data-page="registration">مشاهده پکیج‌ها</button>' +
+      '<a href="/#pricing" class="btn y w100" style="display:block;text-align:center;text-decoration:none">مشاهده تعرفه‌ها</a>' +
       '</div>';
   }
   function bindNav(scope, beforeNavigate) {
@@ -185,12 +184,11 @@
   function logout() {
     VB.modal.confirm({
       title: 'خروج از حساب',
-      message: 'از حساب بازیکن خود خارج می‌شوید؟ تغییرات ذخیره‌شده این دستگاه حفظ می‌ماند.',
+      message: 'از حساب خود خارج می‌شوید؟',
       confirmLabel: 'خروج', danger: true, icon: 'logout', tone: 'danger'
     }).then(function (ok) {
       if (!ok) return;
-      VB.toast('از حساب خارج شدید؛ نسخه نمایشی دوباره وارد می‌شود.', 'info', 'logout');
-      setTimeout(function () { VB.navigate('dashboard'); }, 600);
+      window.location.href = '/logout/';
     });
   }
 

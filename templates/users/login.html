@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ورود — باشگاه والیبال فراز</title>
+  <link rel="stylesheet" href="{% static 'css/base/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base/variables.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/login.css' %}">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23FF6500'/%3E%3Ccircle cx='12' cy='12' r='7.4' fill='none' stroke='%2314181F' stroke-width='1.6'/%3E%3Cpath d='M12 12c-.3-3.1 1-5.8 3.2-7.1M12 12c-2.6 1.8-5.6 2.2-7.9 1M12 12c1.8 2.6 2.3 5.6 1.4 8' fill='none' stroke='%2314181F' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-form-side">
+      <a class="back-link" href="/">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        بازگشت به خانه
+      </a>
+
+      <a class="brand" href="/">
+        <span class="brand-ball" aria-hidden="true"></span>
+        <span><b>FARAZ</b><small>باشگاه والیبال فراز</small></span>
+      </a>
+
+      <h1 class="login-title">ورود به پنل</h1>
+      <p class="login-sub">نام کاربری و رمز عبور خود را که از پشتیبانی دریافت کرده‌اید وارد کنید. ثبت‌نام عمومی نداریم — عضویت فقط حضوری انجام می‌شود.</p>
+
+      {# پیام‌های عمومی Django messages #}
+      {% if messages %}
+        {% for m in messages %}
+          <div class="alert alert-success" role="alert">{{ m }}</div>
+        {% endfor %}
+      {% endif %}
+
+      {# خطای اصلی (شامل قفل) #}
+      {% if error %}
+        <div class="alert {% if is_locked %}alert-warning{% endif %}" role="alert">
+          {{ error }}
+          {% if is_locked and lockout_minutes %}
+            <br><span class="lock-info" style="margin-top:6px; opacity:.9">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+              لطفاً {{ lockout_minutes }} دقیقه دیگر مجدداً تلاش کنید.
+            </span>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {# هشدار باقی‌مانده تلاش‌ها #}
+      {% if remaining_attempts is not None and not is_locked %}
+        {% if remaining_attempts <= 2 %}
+          <div class="alert alert-warning" role="alert">
+            ⚠️ {{ remaining_attempts }} تلاش باقی مانده تا قفل موقت حساب.
+          </div>
+        {% endif %}
+      {% endif %}
+
+      <form method="post" action="{% url 'login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" novalidate>
+        {% csrf_token %}
+        {% if request.GET.next %}<input type="hidden" name="next" value="{{ request.GET.next }}">{% endif %}
+        <div class="field">
+          <label for="id_username">نام کاربری</label>
+          <input id="id_username" type="text" name="username" placeholder="مثال: ahmad.ahmadi" required autofocus autocomplete="username" value="{{ request.POST.username|default:'' }}" {% if is_locked %}disabled{% endif %}>
+        </div>
+        <div class="field">
+          <label for="id_password">رمز عبور</label>
+          <input id="id_password" type="password" name="password" placeholder="••••••••" required autocomplete="current-password" {% if is_locked %}disabled{% endif %}>
+        </div>
+
+        <div class="row-between">
+          <label class="check"><input type="checkbox" name="remember" checked {% if is_locked %}disabled{% endif %}> مرا به خاطر بسپار</label>
+          <a class="link-muted" href="#" onclick="alert('برای بازیابی رمز عبور با پشتیبانی تماس بگیرید: 021-88776655'); return false;">فراموشی رمز؟</a>
+        </div>
+
+        <button class="btn-submit" type="submit" {% if is_locked %}disabled{% endif %}>
+          {% if is_locked %}حساب قفل است{% else %}ورود به داشبورد{% endif %}
+        </button>
+      </form>
+
+      <div class="divider">راهنما</div>
+      <div class="help-box">
+        <b>بازیکن جدید هستی؟</b> برای دریافت نام کاربری به دفتر باشگاه مراجعه کن یا با <bdi>021-88776655</bdi> تماس بگیر. همکاران پشتیبانی حساب کاربری‌ات را می‌سازند و اطلاعات ورود را به تو می‌دهند.
+      </div>
+      <p style="margin-top:14px; font-size:12px; color:rgba(255,255,255,.38); text-align:center">ورود شما به منزله پذیرش قوانین باشگاه است.</p>
+    </div>
+
+    <div class="login-visual" aria-hidden="true">
+      <img src="{% static 'assets/img/hero-bg.jpg' %}" alt="تمرین والیبال">
+      <div class="visual-overlay">
+        <h2>تمرین امروز،<br>قهرمانی فردا</h2>
+        <p>در فراز هر جلسه با هدف برگزار می‌شود — از گرم‌کردن علمی تا بازی تاکتیکی. فقط وارد شو و پیشرفتت را ببین.</p>
+        <div class="visual-stats">
+          <div><b>۰۹–۲۱</b><small>ساعت پاسخگویی</small></div>
+          <div><b>۳</b><small>جلسه در هفته</small></div>
+          <div><b>۱۰۰٪</b><small>پیگیری پشتیبانی</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

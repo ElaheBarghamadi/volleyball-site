@@ -1,0 +1,204 @@
+/* ============================================================
+   home.css — لندینگ عمومی باشگاه والیبال فراز
+   ================================================================= */
+.landing {
+  font-family: var(--font, 'Vazirmatn', sans-serif);
+  background: #080B10;
+  color: #E6E9EF;
+  overflow-x: hidden;
+}
+
+/* ---------- header ---------- */
+.hd {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(8,11,16,.72);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.hd-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.hd-brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; }
+.hd-ball {
+  width: 38px; height: 38px; border-radius: 50%; flex:0 0 auto;
+  background: linear-gradient(135deg,#FF6500,#FF830D);
+  box-shadow: 0 6px 18px rgba(255,101,0,.35);
+  position: relative;
+}
+.hd-ball::before, .hd-ball::after{
+  content:""; position:absolute; inset:5px; border-radius:50%;
+  border:2.2px solid #0F141C; border-left-color:transparent; border-bottom-color:transparent;
+}
+.hd-ball::after{ transform:rotate(135deg); opacity:.6; }
+.hd-brand b { font-family:'Space Grotesk','Vazirmatn',sans-serif; letter-spacing:.22em; font-size:16px; color:#fff; line-height:1; }
+.hd-brand small{ display:block; font-size:10.5px; color:rgba(255,255,255,.55); font-weight:500; }
+.hd-nav { display:flex; gap:6px; margin-inline-start: 18px; }
+.hd-nav a{
+  color: rgba(255,255,255,.7); text-decoration:none; font-size:13.5px; font-weight:500;
+  padding:8px 14px; border-radius:999px; transition:.2s;
+}
+.hd-nav a:hover{ color:#fff; background:rgba(255,255,255,.07); }
+.hd-actions{ margin-inline-start:auto; display:flex; align-items:center; gap:10px; }
+.btn-ghost{
+  color:#fff; text-decoration:none; font-size:13.5px; font-weight:600;
+  padding:9px 16px; border-radius:999px; border:1px solid rgba(255,255,255,.14);
+  transition:.2s;
+}
+.btn-ghost:hover{ background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.22); }
+.btn-primary{
+  display:inline-flex; align-items:center; gap:8px;
+  background: linear-gradient(90deg,#FF6500,#FF830D); color:#fff; text-decoration:none;
+  font-size:14px; font-weight:700; padding:10px 22px; border-radius:999px;
+  box-shadow:0 8px 22px rgba(255,101,0,.32); transition:.2s;
+}
+.btn-primary:hover{ transform:translateY(-1px); box-shadow:0 12px 28px rgba(255,101,0,.38); }
+
+/* ---------- hero ---------- */
+.hero {
+  max-width: 1160px; margin: 0 auto; padding: 36px 20px 28px;
+  display:grid; grid-template-columns: 1.05fr .95fr; gap: 28px; align-items:center;
+}
+.hero-copy h1{
+  font-size: clamp(28px, 4.2vw, 44px); line-height:1.18; font-weight:900; color:#fff; margin:0 0 12px;
+}
+.hero-copy h1 span{ background:linear-gradient(90deg,#FF6500,#FF830D); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-copy > p{ color:rgba(255,255,255,.68); font-size:15.5px; line-height:1.9; margin:0 0 22px; }
+.hero-cta{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+.hero-cta .note{ font-size:12.5px; color:rgba(255,255,255,.45); }
+.hero-stats{ display:flex; gap:18px; margin-top:22px; padding-top:18px; border-top:1px solid rgba(255,255,255,.08); }
+.hero-stats b{ display:block; font-size:22px; font-weight:800; color:#fff; line-height:1; }
+.hero-stats small{ display:block; font-size:12px; color:rgba(255,255,255,.55); margin-top:4px; }
+.hero-visual{
+  position:relative; border-radius:20px; overflow:hidden; min-height:420px;
+  background: radial-gradient(700px 400px at 70% 20%, rgba(255,101,0,.18), transparent 60%), #111722;
+  border:1px solid rgba(255,255,255,.08); box-shadow:0 18px 50px rgba(0,0,0,.45);
+}
+.hero-visual img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.92;
+}
+.hero-visual::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(8,11,16,.08) 30%, rgba(8,11,16,.65) 100%);
+}
+.hero-card{
+  position:absolute; bottom:14px; right:14px; left:14px; z-index:1;
+  background: rgba(16,21,29,.78); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.09); border-radius:14px; padding:14px 16px;
+  display:flex; align-items:center; gap:12px;
+}
+.hero-card .dot{ width:10px; height:10px; border-radius:50%; background:#12A66A; box-shadow:0 0 0 6px rgba(18,166,106,.18); flex:0 0 auto; }
+.hero-card b{ color:#fff; font-size:13.5px; }
+.hero-card small{ display:block; color:rgba(255,255,255,.6); font-size:12px; margin-top:2px; }
+.hero-card .time{ margin-inline-start:auto; background:rgba(255,101,0,.14); color:#FF9B35; font-weight:700; font-size:12px; padding:6px 10px; border-radius:999px; }
+
+/* ---------- section generic ---------- */
+.sect{ max-width:1160px; margin:0 auto; padding: 42px 20px; }
+.sect-head{ text-align:center; max-width:640px; margin:0 auto 26px; }
+.sect-head h2{ font-size:26px; font-weight:800; color:#fff; margin:0 0 8px; }
+.sect-head p{ color:rgba(255,255,255,.6); font-size:14px; line-height:1.8; margin:0; }
+.sect-head h2 span{ color:#FF6500; }
+
+/* ---------- features ---------- */
+.features{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.feat{
+  background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.07); border-radius:16px; padding:22px 18px;
+}
+.feat-ic{ width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:rgba(255,101,0,.12); color:#FF6500; margin-bottom:12px; }
+.feat b{ display:block; color:#fff; font-size:15px; margin-bottom:6px; }
+.feat p{ color:rgba(255,255,255,.6); font-size:13.5px; line-height:1.8; margin:0; }
+
+/* ---------- schedule ---------- */
+.schedule-wrap{
+  display:grid; grid-template-columns: 1.15fr .85fr; gap:16px; align-items:start;
+}
+.sched-table{
+  background: #10151D; border:1px solid rgba(255,255,255,.07); border-radius:16px; overflow:hidden;
+}
+.sched-row{ display:grid; grid-template-columns: 1fr auto; gap:12px; padding:14px 18px; border-bottom:1px solid rgba(255,255,255,.06); align-items:center; }
+.sched-row:last-child{ border-bottom:none; }
+.sched-row b{ color:#fff; font-size:14px; }
+.sched-row small{ display:block; color:rgba(255,255,255,.5); font-size:12.5px; margin-top:2px; }
+.sched-row .badge{ font-size:13px; font-weight:700; padding:6px 12px; border-radius:999px; }
+.badge-on{ background:rgba(18,166,106,.14); color:#34C68E; border:1px solid rgba(18,166,106,.22); }
+.badge-off{ background:rgba(255,255,255,.06); color:rgba(255,255,255,.5); border:1px solid rgba(255,255,255,.08); }
+.sched-info{
+  background: linear-gradient(135deg, #FF6500 0%, #FF830D 100%); border-radius:16px; padding:22px 20px; color:#fff;
+}
+.sched-info h3{ margin:0 0 10px; font-size:18px; font-weight:800; }
+.sched-info p{ margin:0 0 14px; font-size:13.5px; line-height:1.8; opacity:.92; }
+.sched-info ul{ margin:0; padding:0 18px 0 0; font-size:13.5px; line-height:1.9; opacity:.92; }
+.sched-info li{ margin-bottom:2px; }
+
+/* ---------- gallery ---------- */
+.gallery{ display:grid; grid-template-columns: repeat(3,1fr); gap:14px; }
+.g-item{
+  position:relative; border-radius:16px; overflow:hidden; aspect-ratio: 4/3;
+  background:#111722; border:1px solid rgba(255,255,255,.07);
+}
+.g-item img{ width:100%; height:100%; object-fit:cover; transition: transform .5s; }
+.g-item:hover img{ transform:scale(1.05); }
+.g-item span{
+  position:absolute; bottom:10px; right:10px; background:rgba(8,11,16,.7); backdrop-filter:blur(8px);
+  color:#fff; font-size:12px; font-weight:600; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.12);
+}
+
+/* ---------- coaches ---------- */
+.coaches{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
+.coach{
+  background:#10151D; border:1px solid rgba(255,255,255,.07); border-radius:16px; padding:20px; text-align:center;
+}
+.coach-av{ width:82px; height:82px; border-radius:50%; margin:0 auto 12px; background: radial-gradient(circle at 30% 30%, #FF9B35, #FF6500); display:grid; place-items:center; color:#fff; font-weight:800; font-size:26px; border:3px solid rgba(255,255,255,.08); }
+.coach b{ display:block; color:#fff; font-size:15px; }
+.coach small{ display:block; color:#FF9B35; font-size:12.5px; font-weight:600; margin-top:2px; }
+.coach p{ color:rgba(255,255,255,.6); font-size:13px; line-height:1.8; margin:8px 0 0; }
+
+/* ---------- pricing ---------- */
+.pricing{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
+.price{
+  background:#10151D; border:1px solid rgba(255,255,255,.07); border-radius:16px; padding:22px 18px; position:relative;
+}
+.price.featured{ border-color: rgba(255,101,0,.35); box-shadow:0 10px 30px rgba(255,101,0,.12); transform: translateY(-4px); }
+.price .tag{ position:absolute; top:12px; left:12px; background: linear-gradient(90deg,#FF6500,#FF830D); color:#fff; font-size:11px; font-weight:800; padding:5px 10px; border-radius:999px; }
+.price h4{ margin:0 0 6px; color:#fff; font-size:16px; }
+.price .pr{ font-size:28px; font-weight:900; color:#fff; margin:6px 0 2px; }
+.price .pr small{ font-size:13px; font-weight:500; color:rgba(255,255,255,.6); }
+.price ul{ margin:14px 0 18px; padding:0 18px 0 0; color:rgba(255,255,255,.7); font-size:13.5px; line-height:1.9; }
+.price .btn-price{ display:block; text-align:center; text-decoration:none; background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.1); padding:10px; border-radius:999px; font-weight:700; font-size:14px; transition:.2s; }
+.price.featured .btn-price{ background: linear-gradient(90deg,#FF6500,#FF830D); border-color:transparent; box-shadow:0 8px 18px rgba(255,101,0,.28); }
+.price .btn-price:hover{ background:rgba(255,255,255,.1); }
+
+/* ---------- CTA ---------- */
+.cta{
+  margin: 30px 20px 0; max-width:1160px;
+  background: radial-gradient(800px 300px at 85% -10%, rgba(255,101,0,.22), transparent 60%), #10151D;
+  border:1px solid rgba(255,101,0,.18); border-radius:18px; padding:28px 24px;
+  display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+}
+.cta b{ font-size:18px; color:#fff; }
+.cta p{ margin:4px 0 0; color:rgba(255,255,255,.65); font-size:13.5px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 960px){
+  .hd-nav{ display:none; }
+  .hero{ grid-template-columns:1fr; }
+  .hero-visual{ min-height:360px; }
+  .features{ grid-template-columns:1fr; }
+  .schedule-wrap{ grid-template-columns:1fr; }
+  .gallery{ grid-template-columns:1fr 1fr; }
+  .coaches{ grid-template-columns:1fr; }
+  .pricing{ grid-template-columns:1fr; }
+  .price.featured{ transform:none; }
+}
+@media (max-width:600px){
+  .gallery{ grid-template-columns:1fr; }
+  .hero-stats{ gap:12px; }
+}
