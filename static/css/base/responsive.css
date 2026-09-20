@@ -229,3 +229,13 @@
   .pcard-media { background-position: 30% 22%; }
   .pcard-media::before { background: linear-gradient(to left, rgba(8,11,16,.95) 30%, rgba(8,11,16,.82) 62%, rgba(8,11,16,.5)); }
 }
+
+/* ---------- polish: desktop full-screen & light/dark tidy ---------- */
+@media (min-width: 1280px){
+  .hd-inner, .hero, .sect, .cta-wrap { max-width: 1320px; }
+  .hero { gap: 40px; padding: 48px 32px 40px; }
+  .sect { padding: 64px 32px; }
+}
+@media (min-width: 960px){
+  .content { max-width: 1400px; margin: 0 auto; width: 100%; }
+}

@@ -2519,3 +2519,8 @@ body {
 [data-theme="dark"] .sidepanel { background: linear-gradient(180deg, #0C1119, #090D13); }
 [data-theme="dark"] #mm-root .mm-panel { background: linear-gradient(180deg, #0C1119, #090D13); }
 [data-theme="dark"] .topbar { background: color-mix(in srgb, #0C1118 82%, transparent); }
+
+/* ---------- theme polish — smooth light/dark switch ---------- */
+html, body, .app, .rail, .topbar, .card, .hd, .site-footer, .sect, .hero, .feat, .price, .coach {
+  transition: background-color .22s var(--ease), color .22s var(--ease), border-color .22s var(--ease), box-shadow .22s var(--ease);
+}
