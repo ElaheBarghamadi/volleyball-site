@@ -254,11 +254,13 @@
   /* ---------- greeting ---------- */
   function refreshGreeting() {
     var d = D();
-    document.getElementById('tb-hello').innerHTML = 'سلام، <em>' + d.player.firstName + '</em>';
+    var hr = new Date().getHours();
+    var greet = hr < 12 ? 'صبح بخیر' : hr < 18 ? 'عصر بخیر' : 'شبت بخیر';
+    document.getElementById('tb-hello').innerHTML = greet + '، <em>' + d.player.firstName + '</em> <span style="font-weight:500; color:var(--muted); font-size:14px;">— خوش آمدی</span>';
     document.getElementById('tb-date').innerHTML =
       VB.icon('calendar') + '<span class="weekday">' + jal.WEEKDAYS[jal.wdIndex(d.TODAY.date)] + '، </span>' +
       '<span>' + fmt.fa(d.TODAY.jd) + ' ' + jal.MONTHS[d.TODAY.jm - 1] + ' ' + fmt.fa(d.TODAY.jy) + '</span>' +
-      '<i class="live-dot" title="همگام با تقویم باشگاه"></i>';
+      '<span style="display:inline-flex; align-items:center; gap:6px; margin-inline-start:8px; background:var(--success-tint); color:var(--success); font-size:11px; font-weight:800; padding:3px 9px; border-radius:999px; border:1px solid color-mix(in srgb, var(--success) 16%, transparent)"><i class="live-dot" style="width:6px;height:6px;background:var(--success);"></i>آنلاین</span>';
     var ab = document.getElementById('avatar-btn');
     ab.querySelector('.avatar').textContent = d.player.firstName[0];
     ab.querySelector('.ab-name').textContent = d.player.firstName + ' ' + d.player.lastName;
