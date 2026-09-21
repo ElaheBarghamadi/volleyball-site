@@ -7,10 +7,10 @@
   <meta name="description" content="باشگاه والیبال فراز — خانه والیبال شما در تهران. تمرین حرفه‌ای، مربیان مجرب، برنامه منظم و پیشرفت واقعی از نوجوانان تا بزرگسالان.">
   <meta name="theme-color" content="#080B10">
   <title>باشگاه والیبال فراز — خانه والیبال شما</title>
-  <link rel="stylesheet" href="{% static 'css/base/reset.css' %}?v=7">
-  <link rel="stylesheet" href="{% static 'css/base/variables.css' %}?v=7">
-  <link rel="stylesheet" href="{% static 'css/base/footer.css' %}?v=7">
-  <link rel="stylesheet" href="{% static 'css/pages/home.css' %}?v=7">
+  <link rel="stylesheet" href="{% static 'css/base/reset.css' %}?v=8">
+  <link rel="stylesheet" href="{% static 'css/base/variables.css' %}?v=8">
+  <link rel="stylesheet" href="{% static 'css/base/footer.css' %}?v=8">
+  <link rel="stylesheet" href="{% static 'css/pages/home.css' %}?v=8">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23FF6500'/%3E%3Ccircle cx='12' cy='12' r='7.4' fill='none' stroke='%2314181F' stroke-width='1.6'/%3E%3Cpath d='M12 12c-.3-3.1 1-5.8 3.2-7.1M12 12c-2.6 1.8-5.6 2.2-7.9 1M12 12c1.8 2.6 2.3 5.6 1.4 8' fill='none' stroke='%2314181F' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
   <script>
     (function(){
@@ -35,24 +35,25 @@
       </a>
       <nav class="hd-nav" aria-label="منوی اصلی">
         <a href="#about">درباره ما</a>
-        <a href="#schedule">برنامه تمرین</a>
+        <a href="#steps">شروع</a>
+        <a href="#schedule">برنامه</a>
         <a href="#gallery">گالری</a>
         <a href="#coaches">مربیان</a>
         <a href="#pricing">تعرفه‌ها</a>
-        <a href="#contact">تماس</a>
+        <a href="#faq">سوالات</a>
       </nav>
       <div class="hd-actions">
-        <button class="theme-toggle" id="theme-toggle" aria-label="تغییر تم" title="تغییر تم روشن/تیره">
+        <button class="theme-toggle" id="theme-toggle" aria-label="تغییر تم" title="تغییر تم">
           <span id="theme-icon"></span>
         </button>
         <button class="hamburger" id="hamburger" aria-label="منو" aria-expanded="false" aria-controls="m-drawer">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
         </button>
         {% if user.is_authenticated %}
-          <a class="btn-ghost" href="/dashboard/">داشبورد</a>
+          <a class="btn-ghost hide-mobile" href="/dashboard/">داشبورد</a>
           <a class="btn-primary" href="/logout/">خروج</a>
         {% else %}
-          <a class="btn-ghost" href="/login/">ورود بازیکنان</a>
+          <a class="btn-ghost hide-mobile" href="/login/">ورود بازیکنان</a>
           <a class="btn-primary" href="/login/">ورود به پنل <span aria-hidden="true">→</span></a>
         {% endif %}
       </div>
@@ -63,19 +64,21 @@
   <div class="m-drawer" id="m-drawer" aria-hidden="true">
     <div class="m-scrim" id="m-scrim"></div>
     <div class="m-panel" role="dialog" aria-modal="true" aria-label="منوی موبایل">
-      <a class="hd-brand" href="/" style="margin-bottom:4px">
+      <a class="hd-brand" href="/" style="margin-bottom:2px">
         <span class="hd-ball" aria-hidden="true"></span>
         <span><b>FARAZ</b><small>باشگاه والیبال فراز</small></span>
       </a>
-      <nav class="m-nav" aria-label="منوی موبایل">
+      <nav class="m-nav">
         <a href="#about">درباره ما</a>
+        <a href="#steps">چطور شروع کنم؟</a>
         <a href="#schedule">برنامه تمرین</a>
         <a href="#gallery">گالری</a>
         <a href="#coaches">مربیان</a>
         <a href="#pricing">تعرفه‌ها</a>
+        <a href="#faq">سوالات متداول</a>
         <a href="#contact">تماس</a>
       </nav>
-      <div style="height:1px; background:var(--border); margin:2px 0 6px"></div>
+      <div style="height:1px; background:var(--border); margin:4px 0"></div>
       {% if user.is_authenticated %}
         <a class="btn-primary" href="/dashboard/">رفتن به داشبورد</a>
         <a class="btn-ghost" href="/logout/" style="justify-content:center">خروج</a>
@@ -83,16 +86,17 @@
         <a class="btn-primary" href="/login/">ورود به پنل</a>
         <a class="btn-ghost" href="/login/" style="justify-content:center">ورود بازیکنان</a>
       {% endif %}
+      <small style="text-align:center; color:var(--faint); font-size:11px; margin-top:4px">شنبه تا چهارشنبه ۱۶–۲۱ · 021-88776655</small>
     </div>
   </div>
 
-  <!-- hero — full-screen wrapper -->
+  <!-- HERO — fullscreen -->
   <div class="hero-wrap">
     <section class="hero">
       <div class="hero-copy">
-        <div class="hero-badge"><span class="dot"></span> ثبت‌نام ترم جدید — ظرفیت محدود</div>
+        <div class="hero-badge"><span class="dot"></span> ثبت‌نام ترم پاییز — ظرفیت محدود</div>
         <h1>جایی که <span>والیبال</span><br>جدی گرفته می‌شود</h1>
-        <p>از اولین سرو تا اسپک حرفه‌ای — در فراز با مربیان ملی، برنامه علمی و جو صمیمی، مسیر رشدت را کوتاه‌تر کن. مناسب نوجوانان، جوانان و بزرگسالان در دو بخش بانوان و آقایان.</p>
+        <p>از اولین سرو تا اسپک حرفه‌ای — در فراز با مربیان ملی، برنامه‌ی علمی و جو صمیمی، مسیر رشدت را کوتاه‌تر کن. مناسب نوجوانان، جوانان و بزرگسالان در دو بخش بانوان و آقایان.</p>
         <div class="hero-cta">
           {% if user.is_authenticated %}
             <a href="/dashboard/" class="btn-primary">ورود به داشبورد <span aria-hidden="true">→</span></a>
@@ -102,7 +106,16 @@
             <a href="#pricing" class="btn-ghost">دیدن تعرفه‌ها</a>
           {% endif %}
         </div>
-        <p class="note">ثبت‌نام فقط حضوری و توسط پشتیبانی — اینجا فقط وارد می‌شوید.</p>
+        <div class="hero-trust">
+          <div class="avatars">
+            <span style="background:#FF9B35">س</span><span style="background:#2B8CE6">م</span><span style="background:#12A66A">ن</span><span style="background:#7C3AED">پ</span>
+          </div>
+          <div class="trust-txt">
+            <b>مورد اعتماد +۴۵۰ خانواده</b>
+            <small>★ ۴٫۹ از ۵ · رضایت بازیکنان و والدین</small>
+          </div>
+        </div>
+        <p class="hero-note">ثبت‌نام فقط حضوری و توسط پشتیبانی — اینجا فقط وارد می‌شوید.</p>
         <div class="hero-stats">
           <div><b>+۴۵۰</b><small>بازیکن فعال</small></div>
           <div><b>۱۲</b><small>سال سابقه</small></div>
@@ -114,193 +127,372 @@
         <img src="{% static 'assets/img/hero-bg.jpg' %}" alt="تمرین والیبال در سالن فراز" loading="eager" fetchpriority="high">
         <div class="hero-card">
           <span class="dot"></span>
-          <span>
+          <span class="hc-main">
             <b>سانس بعدی: امروز — ۱۷:۰۰ تا ۱۸:۳۰</b>
             <small>سالن اصلی — گروه نوجوانان (مربی: حسینی)</small>
           </span>
           <span class="time">۱۶:۳۰ باز می‌شود</span>
         </div>
+        <div class="hero-float">
+          <b>۹۲٪</b><small>رضایت<br>والدین</small>
+        </div>
       </div>
     </section>
   </div>
 
-  <!-- features -->
-  <section class="sect" id="about">
-  <div class="sect-inner">
-    <div class="sect-head">
-      <div class="overline">چرا فراز</div>
-      <h2>چرا <span>فراز</span> ؟</h2>
-      <p>ما فقط یک سالن نیستیم — یک مسیر کامل برای یادگیری، رقابت و رفاقت ساخته‌ایم.</p>
-    </div>
-    <div class="features">
-      <div class="feat">
-        <div class="feat-ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <b>مربیان با مدرک ملی</b>
-        <p>کادری از مربیان درجه ۱ و ۲ فدراسیون، با سابقه لیگ برتر و استعدادیابی حرفه‌ای.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        </div>
-        <b>برنامه منظم و شفاف</b>
-        <p>۳ جلسه در هفته، حضور و غیاب دقیق، گزارش پیشرفت ماهانه برای هر بازیکن.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20l9-5-9-5-9 5 9 5Z"/><path d="M12 15V10"/><path d="M12 10L3 5l9-5 9 5-9 5Z"/></svg>
-        </div>
-        <b>مسیر قهرمانی</b>
-        <p>از پایه تا تیم مسابقاتی — با بدنسازی، آنالیز ویدیویی و اعزام به مسابقات رسمی.</p>
+  <!-- trust bar -->
+  <div class="trustbar">
+    <div class="trustbar-inner">
+      <span>همکاری و افتخارات</span>
+      <div class="trust-logos">
+        <span class="tlogo">فدراسیون والیبال</span>
+        <span class="tlogo">هیئت تهران</span>
+        <span class="tlogo">لیگ نوجوانان</span>
+        <span class="tlogo">بیمه ورزشی</span>
       </div>
     </div>
-  
   </div>
-</section>
+
+  <!-- about / features -->
+  <section class="sect" id="about">
+    <div class="sect-inner">
+      <div class="sect-head reveal">
+        <div class="overline"><span></span> چرا فراز</div>
+        <h2>چرا <span>فراز</span> انتخاب اول است؟</h2>
+        <p>ما فقط یک سالن نیستیم — یک مسیر کامل برای یادگیری، رقابت و رفاقت ساخته‌ایم؛ با استاندارد حرفه‌ای و حال‌وهوای خانوادگی.</p>
+      </div>
+      <div class="features">
+        <div class="feat reveal">
+          <div class="feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <b>مربیان با مدرک ملی</b>
+          <p>کادری از مربیان درجه ۱ و ۲ فدراسیون، با سابقه لیگ برتر و استعدادیابی حرفه‌ای.</p>
+          <span class="feat-link">آشنایی با مربیان →</span>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <b>برنامه منظم و شفاف</b>
+          <p>۳ جلسه در هفته، حضور و غیاب دقیق، گزارش پیشرفت ماهانه برای هر بازیکن در پنل.</p>
+          <span class="feat-link">دیدن برنامه هفتگی →</span>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20l9-5-9-5-9 5 9 5Z"/><path d="M12 15V10"/><path d="M12 10L3 5l9-5 9 5-9 5Z"/></svg></div>
+          <b>مسیر قهرمانی</b>
+          <p>از پایه تا تیم مسابقاتی — با بدنسازی، آنالیز ویدیویی و اعزام به مسابقات رسمی.</p>
+          <span class="feat-link">مسیر رشد بازیکن →</span>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4.5 8-11.5a8 8 0 1 0-16 0C4 17.5 12 22 12 22Z"/><circle cx="12" cy="10.5" r="3"/></svg></div>
+          <b>سالن اختصاصی و امن</b>
+          <p>کفپوش استاندارد، رختکن تمیز، تهویه و نور حرفه‌ای — محیطی امن برای بانوان و آقایان.</p>
+          <span class="feat-link">بازدید مجازی سالن →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- steps -->
+  <section class="sect sect-alt" id="steps">
+    <div class="sect-inner">
+      <div class="sect-head reveal">
+        <div class="overline"><span></span> مسیر عضویت</div>
+        <h2>در <span>۴ قدم</span> به فراز بپیوند</h2>
+        <p>بدون پیش‌ثبت‌نام آنلاینِ پیچیده — همه‌چیز حضوری و با راهنمایی پشتیبانی.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">۰۱</div>
+          <b>بازدید و مشاوره</b>
+          <p>شنبه تا چهارشنبه ۱۶–۲۱ حضوری بیا، سطحت ارزیابی می‌شود و گروه مناسب پیشنهاد می‌شود.</p>
+        </div>
+        <div class="step-arr" aria-hidden="true">→</div>
+        <div class="step reveal">
+          <div class="step-num">۰۲</div>
+          <b>ثبت‌نام حضوری</b>
+          <p>مدارک + بیمه ورزشی. نام کاربری و رمز توسط پشتیبانی ساخته و تحویل داده می‌شود.</p>
+        </div>
+        <div class="step-arr" aria-hidden="true">→</div>
+        <div class="step reveal">
+          <div class="step-num">۰۳</div>
+          <b>شروع تمرین</b>
+          <p>طبق سانس ثابت هفته، با کفش سالنی و بطری آب سر تمرین حاضر شو — گزارش‌ها در پنل.</p>
+        </div>
+        <div class="step-arr" aria-hidden="true">→</div>
+        <div class="step reveal">
+          <div class="step-num">۰۴</div>
+          <b>رشد و مسابقه</b>
+          <p>ارزیابی ماهانه، ارتقای گروه، دعوت به تیم مسابقاتی و اعزام به تورنمنت‌های رسمی.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- schedule -->
   <section class="sect" id="schedule">
-  <div class="sect-inner">
-    <div class="sect-head">
-      <div class="overline">برنامه هفتگی</div>
-      <h2>ساعت و <span>برنامه تمرین</span></h2>
-      <p>سانس‌ها به تفکیک رده سنی — سالن اصلی و سالن تمرینی</p>
-    </div>
-    <div class="schedule-wrap">
-      <div class="sched-table">
-        <div class="sched-row"><span><b>شنبه — نوجوانان</b><small>سالن اصلی · مربی حسینی</small></span><span class="badge badge-on">۱۶:۰۰ – ۱۷:۳۰</span></div>
-        <div class="sched-row"><span><b>شنبه — جوانان</b><small>سالن اصلی · مربی رضایی</small></span><span class="badge badge-on">۱۷:۳۰ – ۱۹:۰۰</span></div>
-        <div class="sched-row"><span><b>یکشنبه — بانوان (پایه)</b><small>سالن تمرینی · مربی موسوی</small></span><span class="badge badge-on">۱۶:۰۰ – ۱۷:۳۰</span></div>
-        <div class="sched-row"><span><b>دوشنبه — نوجوانان</b><small>سالن اصلی · مربی حسینی</small></span><span class="badge badge-on">۱۶:۰۰ – ۱۷:۳۰</span></div>
-        <div class="sched-row"><span><b>سه‌شنبه — جوانان + بزرگسالان</b><small>سالن اصلی · مربی رضایی</small></span><span class="badge badge-on">۱۷:۳۰ – ۱۹:۳۰</span></div>
-        <div class="sched-row"><span><b>چهارشنبه — مسابقه درون‌باشگاهی</b><small>سالن اصلی</small></span><span class="badge badge-on">۱۷:۰۰ – ۱۹:۰۰</span></div>
-        <div class="sched-row"><span><b>پنجشنبه / جمعه</b><small>تعطیل — اردو و مسابقه رسمی در صورت اعلام</small></span><span class="badge badge-off">تعطیل</span></div>
+    <div class="sect-inner">
+      <div class="sect-head reveal">
+        <div class="overline"><span></span> برنامه هفتگی</div>
+        <h2>ساعت و <span>برنامه تمرین</span></h2>
+        <p>سانس‌ها به تفکیک رده سنی — سالن اصلی و سالن تمرینی · <b style="color:var(--success)">● الان سانس جوانان در حال برگزاری است</b></p>
       </div>
-      <div class="sched-info">
-        <h3>نکات مهم</h3>
-        <p>ورود ۱۵ دقیقه قبل از سانس. کفش سالنی تمیز، بطری آب و کارت بیمه ورزشی الزامی است.</p>
-        <ul>
-          <li>غیبت بیش از ۳ جلسه نیاز به هماهنگی با مربی دارد</li>
-          <li>جابه‌جایی سانس فقط با تایید پشتیبانی</li>
-          <li>تغییرات در پنل بازیکن اطلاع‌رسانی می‌شود</li>
-        </ul>
-        <p style="margin-top:14px; font-size:12.5px; opacity:.9;">آدرس: تهران، بلوار ورزش، مجموعه والیبال فراز — <bdi>021-88776655</bdi></p>
+      <div class="schedule-wrap">
+        <div class="sched-table reveal">
+          <div class="sched-row"><span><b>شنبه — نوجوانان</b><small>سالن اصلی · مربی حسینی</small></span><span class="badge badge-on">۱۶:۰۰ – ۱۷:۳۰</span></div>
+          <div class="sched-row"><span><b>شنبه — جوانان</b><small>سالن اصلی · مربی رضایی</small></span><span class="badge badge-live">● در حال برگزاری</span></div>
+          <div class="sched-row"><span><b>یکشنبه — بانوان (پایه)</b><small>سالن تمرینی · مربی موسوی</small></span><span class="badge badge-on">۱۶:۰۰ – ۱۷:۳۰</span></div>
+          <div class="sched-row"><span><b>دوشنبه — نوجوانان</b><small>سالن اصلی · مربی حسینی</small></span><span class="badge badge-on">۱۶:۰۰ – ۱۷:۳۰</span></div>
+          <div class="sched-row"><span><b>سه‌شنبه — جوانان + بزرگسالان</b><small>سالن اصلی · مربی رضایی</small></span><span class="badge badge-on">۱۷:۳۰ – ۱۹:۳۰</span></div>
+          <div class="sched-row"><span><b>چهارشنبه — مسابقه درون‌باشگاهی</b><small>سالن اصلی</small></span><span class="badge badge-on">۱۷:۰۰ – ۱۹:۰۰</span></div>
+          <div class="sched-row"><span><b>پنجشنبه / جمعه</b><small>تعطیل — اردو و مسابقه رسمی در صورت اعلام</small></span><span class="badge badge-off">تعطیل</span></div>
+        </div>
+        <div class="sched-info reveal">
+          <h3>نکات مهم</h3>
+          <p>ورود ۱۵ دقیقه قبل از سانس. کفش سالنی تمیز، بطری آب و کارت بیمه ورزشی الزامی است.</p>
+          <ul>
+            <li>غیبت بیش از ۳ جلسه نیاز به هماهنگی با مربی دارد</li>
+            <li>جابه‌جایی سانس فقط با تایید پشتیبانی</li>
+            <li>تغییرات برنامه در پنل بازیکن اطلاع‌رسانی می‌شود</li>
+          </ul>
+          <div class="sched-cta">
+            <a href="#contact" class="btn-white">مشاوره سانس مناسب →</a>
+            <span>پاسخگویی: ۱۶–۲۱ · <bdi>021-88776655</bdi></span>
+          </div>
+        </div>
       </div>
     </div>
-  
-  </div>
-</section>
+  </section>
+
+  <!-- achievements -->
+  <section class="sect sect-dark">
+    <div class="sect-inner">
+      <div class="ach-grid">
+        <div class="ach-text reveal">
+          <div class="overline" style="justify-content:flex-start; color:rgba(255,255,255,.7)"><span style="background:var(--brand)"></span> کارنامه فراز</div>
+          <h2>۱۲ سال<br>ساختن <span style="color:#FF9B35">قهرمان</span></h2>
+          <p>از استعدادیابی در مدارس تا سکوی قهرمانی استان — فراز فقط تمرین نمی‌دهد، مسیر می‌سازد.</p>
+          <a href="#gallery" class="btn-ghost" style="color:#fff; border-color:rgba(255,255,255,.18); margin-top:14px">دیدن گالری افتخارات</a>
+        </div>
+        <div class="ach-stats">
+          <div class="ach-card reveal"><b>+۲۳</b><span>مقام استانی و کشوری</span></div>
+          <div class="ach-card reveal"><b>+۱۲۰</b><span>بازیکن به تیم‌های پایه</span></div>
+          <div class="ach-card reveal"><b>۹۲٪</b><span>ماندگاری بازیکنان</span></div>
+          <div class="ach-card reveal"><b>۴</b><span>رده سنی فعال</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- gallery -->
   <section class="sect" id="gallery">
-  <div class="sect-inner">
-    <div class="sect-head">
-      <div class="overline">لحظه‌های فراز</div>
-      <h2>گالری <span>فراز</span></h2>
-      <p>گوشه‌ای از تمرین‌ها، مسابقات و رفاقت‌ها</p>
+    <div class="sect-inner">
+      <div class="sect-head reveal">
+        <div class="overline"><span></span> لحظه‌های فراز</div>
+        <h2>گالری <span>فراز</span></h2>
+        <p>گوشه‌ای از تمرین‌ها، مسابقات و رفاقت‌ها — هر قاب یک داستان</p>
+      </div>
+      <div class="gallery">
+        <div class="g-item reveal"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="تمرین نوجوانان" loading="lazy"><span>تمرین نوجوانان</span><em>۱۴۰۴ · سالن اصلی</em></div>
+        <div class="g-item reveal"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="مسابقه جوانان" loading="lazy"><span>مسابقه جوانان</span><em>لیگ تهران</em></div>
+        <div class="g-item reveal"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="اردوی تیم" loading="lazy"><span>اردوی تیم</span><em>کلاردشت</em></div>
+        <div class="g-item reveal"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="سالن اصلی" loading="lazy"><span>سالن اصلی</span><em>کفپوش استاندارد</em></div>
+        <div class="g-item reveal"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="بدنسازی" loading="lazy"><span>بدنسازی</span><em>قدرت و پرش</em></div>
+        <div class="g-item reveal"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="جشن پایان فصل" loading="lazy"><span>جشن پایان فصل</span><em>اهدای مدال</em></div>
+      </div>
     </div>
-    <div class="gallery">
-      <div class="g-item"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="تمرین نوجوانان" loading="lazy"><span>تمرین نوجوانان</span></div>
-      <div class="g-item"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="مسابقه جوانان" loading="lazy"><span>مسابقه جوانان</span></div>
-      <div class="g-item"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="اردوی تیم" loading="lazy"><span>اردوی تیم</span></div>
-      <div class="g-item"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="سالن اصلی" loading="lazy"><span>سالن اصلی</span></div>
-      <div class="g-item"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="بدنسازی" loading="lazy"><span>بدنسازی</span></div>
-      <div class="g-item"><img src="{% static 'assets/img/hero-bg.jpg' %}" alt="جشن پایان فصل" loading="lazy"><span>جشن پایان فصل</span></div>
-    </div>
-  
-  </div>
-</section>
+  </section>
 
   <!-- coaches -->
-  <section class="sect" id="coaches">
-  <div class="sect-inner">
-    <div class="sect-head">
-      <div class="overline">کادر فنی</div>
-      <h2>مربیان <span>ما</span></h2>
-      <p>کنار شما در هر سرو، هر دریافت و هر امتیاز</p>
+  <section class="sect sect-alt" id="coaches">
+    <div class="sect-inner">
+      <div class="sect-head reveal">
+        <div class="overline"><span></span> کادر فنی</div>
+        <h2>مربیان <span>ما</span></h2>
+        <p>کنار شما در هر سرو، هر دریافت و هر امتیاز — با دانش روز و اخلاق حرفه‌ای</p>
+      </div>
+      <div class="coaches">
+        <div class="coach reveal">
+          <div class="coach-av">ح</div>
+          <span class="coach-role">سرمربی — درجه ۱</span>
+          <b>استاد حسینی</b>
+          <small>نوجوانان · استعدادیابی</small>
+          <p>۱۵ سال سابقه لیگ برتر، متخصص کار با نوجوانان و پایه‌سازی تکنیک.</p>
+          <div class="coach-meta"><span>🏐 ۱۵ سال</span><span>★ ۴٫۹</span></div>
+        </div>
+        <div class="coach reveal">
+          <div class="coach-av" style="background:radial-gradient(circle at 30% 28%, #3AA0FF, #1E6BFF)">ر</div>
+          <span class="coach-role">مربی جوانان — بدنساز</span>
+          <b>مربی رضایی</b>
+          <small>بدنسازی · آنالیز ویدیویی</small>
+          <p>متخصص پرش و اسپک، آنالیز ویدیویی و ارتقای تاکتیک تیمی.</p>
+          <div class="coach-meta"><span>🏋️ بدنسازی</span><span>★ ۵٫۰</span></div>
+        </div>
+        <div class="coach reveal">
+          <div class="coach-av" style="background:radial-gradient(circle at 30% 28%, #FF7AB3, #E9407B)">م</div>
+          <span class="coach-role">مربی بانوان</span>
+          <b>مربی موسوی</b>
+          <small>بانوان · پایه تا حرفه‌ای</small>
+          <p>قهرمان سابق تیم ملی بانوان، مربی پایه با رویکرد مدرن و انگیزشی.</p>
+          <div class="coach-meta"><span>👩‍🏫 ۱۰ سال</span><span>★ ۴٫۹</span></div>
+        </div>
+      </div>
     </div>
-    <div class="coaches">
-      <div class="coach">
-        <div class="coach-av">ح</div>
-        <b>استاد حسینی</b><small>سرمربی — مربی درجه ۱</small>
-        <p>۱۵ سال سابقه لیگ برتر، متخصص کار با نوجوانان و استعدادیابی.</p>
+  </section>
+
+  <!-- testimonials -->
+  <section class="sect">
+    <div class="sect-inner">
+      <div class="sect-head reveal">
+        <div class="overline"><span></span> صدای بازیکنان</div>
+        <h2>بچه‌ها و خانواده‌ها <span>چه می‌گویند؟</span></h2>
+        <p>رضایت واقعی — از زبان کسانی که فراز را زندگی کرده‌اند</p>
       </div>
-      <div class="coach">
-        <div class="coach-av">ر</div>
-        <b>مربی رضایی</b><small>مربی جوانان — بدنساز</small>
-        <p>بدنسازی و پرش، آنالیز ویدیویی و ارتقای تکنیک اسپک.</p>
-      </div>
-      <div class="coach">
-        <div class="coach-av">م</div>
-        <b>مربی موسوی</b><small>مربی بانوان</small>
-        <p>قهرمان سابق تیم ملی بانوان، مربی پایه با رویکرد مدرن.</p>
+      <div class="testimonials">
+        <div class="t-card reveal">
+          <div class="t-stars">★★★★★</div>
+          <p>«پسرم از صفر شروع کرد، بعد از یک ترم سرویس و دریافتش عالی شد. نظم و اخلاق مربی‌ها فوق‌العاده‌ست.»</p>
+          <div class="t-person"><span class="t-av">م</span><span><b>مادر سامیار — نوجوانان</b><small>۲ ترم حضور</small></span></div>
+        </div>
+        <div class="t-card reveal">
+          <div class="t-stars">★★★★★</div>
+          <p>«جو تیم خیلی صمیمیه ولی حرفه‌ای. بدنسازی و آنالیز ویدیویی واقعاً سطحم رو بالا برد.»</p>
+          <div class="t-person"><span class="t-av" style="background:#1E6BFF">آ</span><span><b>آرش — جوانان</b><small>کاپیتان تیم مسابقاتی</small></span></div>
+        </div>
+        <div class="t-card reveal">
+          <div class="t-stars">★★★★★</div>
+          <p>«به‌عنوان بازیکن بانوان، امنیت و کیفیت سالن برام اولویته. فراز هر دو رو عالی داره.»</p>
+          <div class="t-person"><span class="t-av" style="background:#E9407B">ن</span><span><b>نگار — بانوان</b><small>۱ سال حضور</small></span></div>
+        </div>
       </div>
     </div>
-  
-  </div>
-</section>
+  </section>
 
   <!-- pricing -->
-  <section class="sect" id="pricing">
-  <div class="sect-inner">
-    <div class="sect-head">
-      <div class="overline">شهریه ماهانه</div>
-      <h2>تعرفه <span>ترم</span></h2>
-      <p>پرداخت ماهانه — بیمه ورزشی جداگانه</p>
+  <section class="sect sect-alt" id="pricing">
+    <div class="sect-inner">
+      <div class="sect-head reveal">
+        <div class="overline"><span></span> شهریه شفاف</div>
+        <h2>تعرفه <span>ترم</span></h2>
+        <p>پرداخت ماهانه — بدون هزینه پنهان · بیمه ورزشی جداگانه · تضمین بازگشت وجه تا جلسه دوم</p>
+      </div>
+      <div class="pricing">
+        <div class="price reveal">
+          <h4>پایه — نوجوانان</h4>
+          <div class="pr">۱٫۲۹۰٫۰۰۰ <small>تومان / ماه</small></div>
+          <small class="pr-sub">۳ جلسه در هفته · ۹۰ دقیقه</small>
+          <ul>
+            <li>گروه ۱۴ نفره</li>
+            <li>گزارش پیشرفت ماهانه</li>
+            <li>بیمه ورزشی (جداگانه)</li>
+            <li>مسابقه درون‌باشگاهی</li>
+          </ul>
+          <a href="#contact" class="btn-price">مشاوره ثبت‌نام</a>
+        </div>
+        <div class="price featured reveal">
+          <span class="tag">محبوب‌ترین ⭐</span>
+          <h4>پیشرفته — جوانان</h4>
+          <div class="pr">۱٫۵۹۰٫۰۰۰ <small>تومان / ماه</small></div>
+          <small class="pr-sub">۳ جلسه + ۱ جلسه بدنسازی</small>
+          <ul>
+            <li>گروه ۱۲ نفره</li>
+            <li>آنالیز ویدیویی</li>
+            <li>اعزام مسابقه رسمی</li>
+            <li>برنامه بدنسازی اختصاصی</li>
+          </ul>
+          <a href="#contact" class="btn-price">مشاوره ثبت‌نام</a>
+          <small class="price-note">✓ بیش از ۶۰٪ بازیکنان این پکیج را انتخاب می‌کنند</small>
+        </div>
+        <div class="price reveal">
+          <h4>حرفه‌ای — بزرگسالان</h4>
+          <div class="pr">۱٫۸۹۰٫۰۰۰ <small>تومان / ماه</small></div>
+          <small class="pr-sub">۴ جلسه · تیم مسابقاتی</small>
+          <ul>
+            <li>تمرین تاکتیکی ۴ روز</li>
+            <li>بدنسازی اختصاصی</li>
+            <li>لیگ و تورنمنت رسمی</li>
+            <li>پشتیبانی تغذیه</li>
+          </ul>
+          <a href="#contact" class="btn-price">مشاوره ثبت‌نام</a>
+        </div>
+      </div>
+      <p class="pricing-foot">ثبت‌نام حضوری در دفتر باشگاه — نام کاربری و رمز عبور توسط پشتیبانی ساخته می‌شود. <a href="#faq">سوالات شهریه →</a></p>
     </div>
-    <div class="pricing">
-      <div class="price">
-        <h4>پایه — نوجوانان</h4>
-        <div class="pr">۱٫۲۹۰٫۰۰۰ <small>تومان / ماه</small></div>
-        <small style="color:var(--muted)">۳ جلسه در هفته · ۹۰ دقیقه</small>
-        <ul>
-          <li>گروه ۱۴ نفره</li>
-          <li>گزارش پیشرفت ماهانه</li>
-          <li>بیمه ورزشی (جداگانه)</li>
-        </ul>
-        <a href="#contact" class="btn-price">مشاوره ثبت‌نام</a>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sect" id="faq">
+    <div class="sect-inner">
+      <div class="sect-head reveal">
+        <div class="overline"><span></span> سوالات متداول</div>
+        <h2>هرچه می‌خواهی <span>بدانی</span></h2>
+        <p>پاسخ کوتاه به پرتکرارترین سوال‌ها — اگر جوابت نبود، تماس بگیر</p>
       </div>
-      <div class="price featured">
-        <span class="tag">محبوب‌ترین</span>
-        <h4>پیشرفته — جوانان</h4>
-        <div class="pr">۱٫۵۹۰٫۰۰۰ <small>تومان / ماه</small></div>
-        <small style="color:var(--muted)">۳ جلسه + ۱ جلسه بدنسازی</small>
-        <ul>
-          <li>گروه ۱۲ نفره</li>
-          <li>آنالیز ویدیویی</li>
-          <li>اعزام مسابقه</li>
-        </ul>
-        <a href="#contact" class="btn-price">مشاوره ثبت‌نام</a>
-      </div>
-      <div class="price">
-        <h4>حرفه‌ای — بزرگسالان</h4>
-        <div class="pr">۱٫۸۹۰٫۰۰۰ <small>تومان / ماه</small></div>
-        <small style="color:var(--muted)">۴ جلسه · تیم مسابقاتی</small>
-        <ul>
-          <li>تمرین تاکتیکی</li>
-          <li>بدنسازی اختصاصی</li>
-          <li>لیگ و تورنمنت</li>
-        </ul>
-        <a href="#contact" class="btn-price">مشاوره ثبت‌نام</a>
+      <div class="faq reveal">
+        <details open>
+          <summary>آیا برای شروع باید والیبال بلد باشم؟ <span></span></summary>
+          <p>نه. از صفر تا پیشرفته گروه‌بندی می‌کنیم. جلسه اول ارزیابی سطح رایگان است و گروه مناسب پیشنهاد می‌شود.</p>
+        </details>
+        <details>
+          <summary>سانس بانوان و آقایان جداست؟ <span></span></summary>
+          <p>بله، کاملاً جدا. سانس‌های بانوان در سالن تمرینی با مربی خانم و سانس آقایان در سالن اصلی برگزار می‌شود.</p>
+        </details>
+        <details>
+          <summary>شهریه را چطور پرداخت کنم؟ <span></span></summary>
+          <p>ماهانه و حضوری/کارت‌خوان در دفتر. وضعیت پرداخت و باقی‌مانده را در پنل «شهریه و پرداخت» می‌بینی.</p>
+        </details>
+        <details>
+          <summary>اگر غیبت کنم چه می‌شود؟ <span></span></summary>
+          <p>تا ۳ جلسه غیبت موجه با هماهنگی مربی قابل جبران است. غیبت بیشتر نیاز به هماهنگی با پشتیبانی دارد.</p>
+        </details>
+        <details>
+          <summary>چطور وارد پنل شوم؟ <span></span></summary>
+          <p>نام کاربری و رمز را پشتیبانی بعد از ثبت‌نام حضوری می‌سازد. فقط با همان وارد می‌شوی — ثبت‌نام آنلاین نداریم.</p>
+        </details>
       </div>
     </div>
-    <p style="text-align:center;color:var(--faint);font-size:12.5px;margin-top:16px;">ثبت‌نام حضوری در دفتر باشگاه — نام کاربری و رمز عبور توسط پشتیبانی ساخته می‌شود.</p>
-  
-  </div>
-</section>
+  </section>
+
+  <!-- contact / location -->
+  <section class="sect sect-alt" id="contact">
+    <div class="sect-inner">
+      <div class="location-grid">
+        <div class="loc-info reveal">
+          <div class="overline" style="justify-content:flex-start"><span></span> تماس و آدرس</div>
+          <h2>بیا از نزدیک <span>ببین</span></h2>
+          <p>شنبه تا چهارشنبه ۱۶–۲۱ در سالن هستیم. قبل از مراجعه تماس بگیر تا سانس مناسب رو رزرو کنیم.</p>
+          <div class="loc-cards">
+            <div class="loc-card"><i>📍</i><span><b>آدرس</b><small>تهران، بلوار ورزش، مجموعه والیبال فراز</small></span></div>
+            <div class="loc-card"><i>📞</i><span><b>تلفن</b><small><bdi>021-88776655</bdi> · <bdi>0935-xxx-xxxx</bdi> (پشتیبانی)</small></span></div>
+            <div class="loc-card"><i>✉️</i><span><b>ایمیل</b><small><bdi>club@vc.ir</bdi></small></span></div>
+            <div class="loc-card"><i>🕓</i><span><b>ساعت کاری</b><small>شنبه تا چهارشنبه ۱۶–۲۱ · پنجشنبه اردو</small></span></div>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:18px; flex-wrap:wrap">
+            <a href="tel:02188776655" class="btn-primary">تماس: 021-88776655</a>
+            <a href="https://maps.google.com/?q=Tehran+Volleyball" target="_blank" rel="noopener" class="btn-ghost">مسیریابی گوگل →</a>
+          </div>
+        </div>
+        <div class="loc-map reveal">
+          <div class="map-ph">
+            <span>🗺️</span>
+            <b>نقشه سالن فراز</b>
+            <small>بلوار ورزش — ۵۰ متر بعد از پارک — مجموعه فراز</small>
+            <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn-ghost" style="margin-top:12px; background:var(--surface)">باز کردن در نقشه</a>
+          </div>
+          <div class="map-pin">📍 فراز</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- CTA -->
   <div class="cta-wrap">
-    <div class="cta" id="contact">
+    <div class="cta reveal" id="cta">
       <div style="flex:1; min-width:240px">
         <b>آماده‌ای به فراز بپیوندی؟</b>
-        <p>برای بازدید از سالن و مشاوره رایگان، همین حالا تماس بگیر یا حضوری سر بزن.</p>
-        <p style="margin-top:8px; font-size:13px; color:var(--muted)">شنبه تا چهارشنبه ۱۶–۲۱ · <bdi>021-88776655</bdi> · <bdi>club@vc.ir</bdi></p>
+        <p>برای بازدید از سالن و مشاوره رایگان، همین حالا تماس بگیر یا حضوری سر بزن. ترم پاییز در حال تکمیل ظرفیت است.</p>
+        <div class="cta-badges"><span>✓ مشاوره رایگان</span><span>✓ ارزیابی سطح</span><span>✓ تضمین بازگشت تا جلسه دوم</span></div>
       </div>
       <div style="display:flex; gap:10px; flex-wrap:wrap">
-        <a href="tel:02188776655" class="btn-primary">تماس: 021-88776655</a>
-        <a href="/login/" class="btn-ghost">ورود بازیکنان</a>
+        <a href="tel:02188776655" class="btn-primary" style="padding:14px 28px">تماس: 021-88776655</a>
+        <a href="/login/" class="btn-ghost" style="padding:14px 22px; background:var(--surface)">ورود بازیکنان</a>
       </div>
     </div>
   </div>
@@ -308,7 +500,6 @@
   {% include "includes/footer.html" %}
 
   <script>
-    // theme toggle — هماهنگ با vb-settings
     (function(){
       var btn=document.getElementById('theme-toggle');
       var icon=document.getElementById('theme-icon');
@@ -325,19 +516,12 @@
         var cur=document.documentElement.getAttribute('data-theme');
         var next=cur==='dark'?'light':'dark';
         document.documentElement.setAttribute('data-theme', next);
-        try{
-          var s=JSON.parse(localStorage.getItem('vb-settings')||'{}');
-          s.theme=next; localStorage.setItem('vb-settings', JSON.stringify(s));
-        }catch(e){ localStorage.setItem('vb-settings', JSON.stringify({theme:next})); }
+        try{ var s=JSON.parse(localStorage.getItem('vb-settings')||'{}'); s.theme=next; localStorage.setItem('vb-settings', JSON.stringify(s)); }catch(e){ localStorage.setItem('vb-settings', JSON.stringify({theme:next})); }
         updateIcon();
       });
-
-      // header scrolled
       var hd=document.getElementById('hd');
       function onScroll(){ hd.classList.toggle('scrolled', window.scrollY>8); }
       window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-
-      // mobile drawer
       var btnM=document.getElementById('hamburger');
       var drawer=document.getElementById('m-drawer');
       var scrim=document.getElementById('m-scrim');
@@ -347,6 +531,17 @@
       scrim.addEventListener('click', closeM);
       drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeM); });
       document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeM(); });
+
+      // reveal on scroll
+      var reveals=document.querySelectorAll('.reveal');
+      if('IntersectionObserver' in window){
+        var io=new IntersectionObserver(function(entries){
+          entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+        }, {threshold:.12});
+        reveals.forEach(function(el){ io.observe(el); });
+      } else {
+        reveals.forEach(function(el){ el.classList.add('in'); });
+      }
     })();
   </script>
 </body>
