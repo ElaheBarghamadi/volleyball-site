@@ -239,3 +239,81 @@
 @media (min-width: 960px){
   .content { max-width: 1400px; margin: 0 auto; width: 100%; }
 }
+
+/* ============================================================
+   PLAYER PREMIUM v9 — responsive polish (کامل‌تر + بهتر)
+   ============================================================ */
+
+/* desktop fullscreen — true edge-to-edge but readable */
+@media (min-width: 1280px){
+  .content{ max-width:1320px; }
+  .main{ padding-inline:32px; }
+  .topbar{ margin-inline:-32px; padding-inline:32px; }
+  .dash-hero{ gap:22px; }
+  .dash-kpis{ gap:18px; }
+}
+@media (min-width: 1440px){
+  .content{ max-width:1360px; }
+  .rail{ width:272px; }
+  .app{ grid-template-columns:272px minmax(0, 1fr); }
+}
+@media (min-width: 1600px){
+  .content{ max-width:1400px; }
+}
+
+/* collapsed icon rail — avoid cramp, keep tooltips */
+@media (min-width: 961px) and (max-width: 1240px){
+  .app{ grid-template-columns:84px minmax(0, 1fr); }
+  .rail{ width:84px; padding:16px 8px; }
+  .content{ max-width:1100px; }
+}
+
+/* tablet — 960 breakpoint polish */
+@media (max-width: 960px){
+  .app{ grid-template-columns:minmax(0, 1fr); }
+  .main{ padding-inline:0; }
+  .topbar{
+    margin-inline:0; padding:14px 16px 14px;
+    min-height:64px; border-bottom:1px solid var(--border);
+    background:color-mix(in srgb, var(--surface) 88%, transparent);
+  }
+  .content{ padding:14px 14px 90px; max-width:none; }
+  .page-head{ margin-bottom:14px; }
+  .pcard{ padding:18px; }
+  .pcard .num{ font-size:78px; top:-6px; left:14px; }
+  .avat{ width:68px; height:68px; font-size:20px; }
+  .pstats{ gap:8px; }
+  .dash-hero, .dash-kpis, .dash-two, .dash-row3{ gap:14px; }
+}
+
+/* phone — 640 polish */
+@media (max-width: 640px){
+  :root{ --fs-hero:30px; --fs-3xl:24px; --fs-2xl:20px; }
+  .topbar{ gap:10px; }
+  .search-box{ display:none; } /* hide huge search on tiny, menu search via overlay already */
+  .icon-btn{ width:40px; height:40px; border-radius:12px; }
+  .avatar{ width:38px; height:38px; font-size:14px; }
+  .pcard{ padding:16px; border-radius:16px; }
+  .pcard .num{ font-size:64px; top:0; left:12px; }
+  .ptop h2{ font-size:18px; }
+  .pstats{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  .nx{ padding:12px; gap:8px; }
+  .nx-cd{ width:100%; text-align:center; order:5; font-size:15px; }
+  .nx .btn{ flex:1; justify-content:center; }
+  .kpi{ padding:16px; min-height:132px; }
+  .kval{ font-size:22px; }
+  .dash-kpis{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; }
+  .card, .ringcard, .tick, .fee, .calcard{ border-radius:16px; }
+  .sess{ padding:12px; }
+  .sy{ width:48px; }
+}
+
+/* very small — 380 */
+@media (max-width: 380px){
+  .dash-kpis{ grid-template-columns:1fr; }
+  .pstats{ gap:6px; }
+  .pstat{ padding:10px 6px; }
+  .ringwrap{ width:148px; height:148px; }
+  .topbar{ padding:12px 12px; }
+  .content{ padding:12px 12px 88px; }
+}

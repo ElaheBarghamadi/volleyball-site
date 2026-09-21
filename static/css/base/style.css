@@ -2524,3 +2524,237 @@ body {
 html, body, .app, .rail, .topbar, .card, .hd, .site-footer, .sect, .hero, .feat, .price, .coach {
   transition: background-color .22s var(--ease), color .22s var(--ease), border-color .22s var(--ease), box-shadow .22s var(--ease);
 }
+
+/* ============================================================
+   PLAYER PREMIUM v9 — کامل‌تر و پریمیوم‌تر (روی پنل بازیکن)
+   target: true fullscreen desktop + light/dark coherent + polished motion
+   ============================================================ */
+
+/* app shell — breathing room + centered max-width for 1440+ */
+.app{ gap:0; }
+.main{
+  min-width:0; display:flex; flex-direction:column;
+  padding-inline:clamp(18px, 2.4vw, 32px);
+  background: transparent;
+}
+.content{
+  width:100%; max-width:1280px; margin:0 auto;
+  padding: 6px 0 96px;
+}
+
+/* rail — premium glass + subtle right shadow */
+.rail{
+  background:color-mix(in srgb, var(--surface) 96%, transparent);
+  backdrop-filter:saturate(1.15);
+  border-inline-end:1px solid var(--border);
+  box-shadow: 1px 0 0 var(--border), 8px 0 24px -16px rgba(16,21,29,.08);
+  padding:18px 14px 16px;
+  gap:6px;
+}
+[data-theme="dark"] .rail{
+  background:linear-gradient(180deg, #0E141E 0%, #0A0F18 100%);
+  box-shadow:1px 0 0 #1A2330, 0 0 0 transparent;
+}
+.rail .brand{ padding:4px 6px 14px; margin-bottom:10px; }
+.rail .nv{ padding:10px 14px; border-radius:13px; font-size:13.2px; gap:12px; }
+.rail .nv.is-active{
+  background:var(--brand-grad);
+  box-shadow:0 10px 28px -12px rgba(255,101,0,.5), 0 6px 14px -10px rgba(255,101,0,.4);
+}
+.rail .nv.is-active::after{
+  content:""; position:absolute; inset-inline-start:-14px; top:50%; transform:translateY(-50%);
+  width:3px; height:22px; border-radius:99px; background:var(--brand);
+}
+.rail .up{
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:16px;
+  background:
+    radial-gradient(280px 160px at 88% -20%, rgba(255,101,0,.28), transparent 62%),
+    radial-gradient(220px 120px at 18% 118%, rgba(255,155,53,.14), transparent 60%),
+    linear-gradient(150deg, #1A2332, #0C1119);
+}
+.rail .up b{ font-size:13px; letter-spacing:-.01em; }
+.rail .up small{ font-size:11px; line-height:1.8; opacity:.86; }
+
+/* topbar — sticky 68px, blurred, scrolled shadow */
+.topbar{
+  min-height:68px;
+  padding:14px 0 16px;
+  margin-inline:calc(clamp(18px, 2.4vw, 32px) * -1);
+  padding-inline:clamp(18px, 2.4vw, 32px);
+  background:color-mix(in srgb, var(--surface) 84%, transparent);
+  backdrop-filter:blur(14px) saturate(1.18); -webkit-backdrop-filter:blur(14px) saturate(1.18);
+  border-bottom:1px solid var(--border);
+  z-index:36;
+}
+.topbar.is-scrolled{ box-shadow:0 6px 18px -14px rgba(16,21,29,.18); }
+[data-theme="dark"] .topbar{ background:color-mix(in srgb, #0C1119 86%, transparent); }
+.tb-hello{ font-size:clamp(20px, 2vw, 24px); letter-spacing:-.02em; }
+.tb-date{ font-size:13px; gap:8px; }
+
+.search-box{
+  height:42px; width:240px; border-radius:999px;
+  background:var(--surface); border:1.5px solid var(--border);
+  box-shadow:0 1px 0 rgba(16,21,29,.02);
+}
+.search-box:focus-within{
+  width:300px; border-color:color-mix(in srgb, var(--brand) 42%, var(--border));
+  box-shadow:0 0 0 4px var(--primary-tint), 0 6px 18px -10px rgba(255,101,0,.18);
+}
+.icon-btn{
+  width:42px; height:42px; border-radius:13px;
+  background:var(--surface); border:1.5px solid var(--border);
+}
+.icon-btn:hover{ transform:translateY(-1px); box-shadow:var(--shadow-1); }
+.avatar-btn{ padding:4px 12px 4px 5px; border-radius:999px; }
+.avatar{ width:42px; height:42px; font-size:15.5px; box-shadow:0 0 0 2px var(--surface), 0 6px 16px -8px rgba(255,101,0,.35); }
+
+/* cards — unified premium */
+.card{
+  border-radius:16px;
+  border:1px solid var(--border);
+  background:var(--card-grad);
+  box-shadow:0 1px 2px rgba(16,21,29,.04), 0 10px 30px -18px rgba(16,21,29,.14);
+  transition:transform .18s var(--ease), box-shadow .18s var(--ease), border-color .18s var(--ease);
+}
+.card:hover{ border-color:color-mix(in srgb, var(--border-2) 92%, transparent); }
+.card::before{
+  content:""; position:absolute; inset:0 0 auto 0; height:1px; border-radius:16px 16px 0 0;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+  opacity:.0; transition:opacity .22s;
+  pointer-events:none;
+}
+[data-theme="dark"] .card::before{ background:linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent); }
+.card:hover::before{ opacity:.11; }
+[data-theme="dark"] .card:hover::before{ opacity:.16; }
+.card-head{ padding:20px 20px 0; }
+.card-title{ font-size:15.5px; letter-spacing:-.015em; }
+.card-title::before{ width:7px; height:7px; box-shadow:0 0 0 5px var(--y-50); }
+.chead{ margin-bottom:14px; }
+.chead h3{ font-size:14.5px; letter-spacing:-.01em; }
+
+/* pcard — more cinematic */
+.pcard{
+  border-radius:18px; padding:26px; overflow:hidden;
+  box-shadow:0 18px 48px -18px rgba(8,11,16,.38), 0 10px 28px -16px rgba(8,11,16,.22);
+  border:1px solid rgba(255,255,255,.08);
+}
+.pcard .num{ font-size:110px; top:-10px; left:22px; color:rgba(255,101,0,.13); }
+.ptop{ gap:16px; }
+.avat{ width:88px; height:88px; font-size:26px; border:3px solid rgba(255,255,255,.72); box-shadow:0 16px 36px rgba(255,101,0,.32), 0 0 0 6px rgba(255,101,0,.08); }
+.ptop h2{ font-size:24px; letter-spacing:-.02em; }
+.pstats{ gap:10px; margin-top:18px; }
+.pstat{
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:14px; padding:13px 10px;
+  backdrop-filter:blur(6px);
+}
+.pstat b{ font-size:20px; }
+.nx{
+  margin-top:18px; padding:13px 14px; border-radius:14px;
+  background:rgba(8,11,16,.38); border:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(8px);
+}
+.nx-cd{ font-size:16px; letter-spacing:.4px; }
+
+/* ringcard — spacious */
+.ringcard{ padding:22px; border-radius:18px; }
+.ringwrap{ width:176px; height:176px; }
+.rlegend{ gap:12px; font-size:11.5px; }
+.tipbox{ margin-top:16px; border-radius:12px; padding:11px 14px; font-size:11px; line-height:1.9; }
+
+/* KPI — subtle tone gradients */
+.kpi{ padding:20px; border-radius:16px; min-height:148px; display:flex; flex-direction:column; }
+.kpi:hover{ transform:translateY(-3px); box-shadow:0 12px 28px -16px rgba(16,21,29,.18); }
+.kico{ width:42px; height:42px; border-radius:12px; margin-bottom:14px; }
+.kico.blue{ background:linear-gradient(135deg, #E8F3FF, #D5E9FF); border-color:#CDE2FF; }
+.kico.y{ background:linear-gradient(135deg, #FFF3E6, #FFE1C2); border-color:#FFD8B0; }
+[data-theme="dark"] .kico.blue{ background:linear-gradient(135deg, #0D2944, #123C63); border-color:transparent; }
+[data-theme="dark"] .kico.y{ background:linear-gradient(135deg, #39230E, #4B2D06); border-color:transparent; }
+.kval{ font-size:26px; }
+.kpi .spark{ margin-top:auto; padding-top:12px; }
+
+/* radar + court — boxed */
+.radarbox, .courtbox{ gap:20px; }
+.skbar{ height:7px; }
+.court{ max-width:200px; }
+
+/* fee — premium dark card */
+.fee{
+  border-radius:18px; padding:22px;
+  background:
+    radial-gradient(560px 260px at 92% -18%, rgba(255,101,0,.22), transparent 60%),
+    linear-gradient(150deg, #1C232E, #0C1119);
+  border:1px solid rgba(255,255,255,.06);
+}
+.fee .chead h3{ color:#fff; }
+.amt b{ font-size:30px; }
+.prog{ height:8px; border-radius:999px; }
+.insts{ gap:8px; }
+.inst{ border-radius:12px; padding:10px 6px; font-size:10.5px; }
+
+/* tick — dashed premium */
+.tick{
+  border-radius:18px; padding:20px;
+  background:linear-gradient(150deg, var(--blue-50), var(--surface) 58%);
+  border:1.6px dashed color-mix(in srgb, var(--primary) 38%, var(--border));
+}
+.tick::before, .tick::after{ width:24px; height:24px; }
+.tick-hd> .ic{ width:36px; height:36px; }
+
+/* mini cal */
+.cal-grid .c{ border-radius:11px; font-size:11px; }
+.cal-grid .c.t{ outline:2px solid var(--brand); outline-offset:1.5px; }
+
+/* sessions */
+.sess{ border-radius:14px; padding:14px; background:var(--surface); border:1.5px solid var(--border); }
+.sess:hover{ border-color:color-mix(in srgb, var(--brand) 18%, var(--border)); transform:translateY(-1px); }
+.sess.y{ background:var(--y-50); border-color:var(--y-100); }
+.sy{ width:56px; border-radius:12px; }
+
+/* page head */
+.page-head{ margin-bottom:18px; gap:14px; }
+.page-head .overline{ font-size:11px; letter-spacing:.16em; color:var(--faint); }
+.page-head .overline::before{ width:20px; height:3px; background:var(--brand); }
+.ph-title{ font-size:clamp(22px, 2.4vw, 26px); letter-spacing:-.02em; }
+.ph-sub{ font-size:13.5px; line-height:1.7; }
+
+/* buttons micro */
+.btn{ height:44px; border-radius:12px; font-weight:700; letter-spacing:-.01em; }
+.btn:active{ transform:scale(.98); }
+.btn.y, .btn.b{ box-shadow:0 10px 22px -12px rgba(255,101,0,.45); }
+.btn.g{ background:var(--surface); border:1.5px solid var(--border-2); }
+.chip{ height:36px; border-radius:999px; font-weight:700; }
+
+/* overlays — premium blur */
+.scrim{ background:rgba(8,11,16,.48); backdrop-filter:blur(6px) saturate(1.05); }
+.modal{ border-radius:18px; box-shadow:0 24px 64px -20px rgba(8,11,16,.42); border:1px solid var(--border); }
+.drawer{ border-inline-start:1px solid var(--border); }
+.toast{ border-radius:14px; box-shadow:0 12px 32px -12px rgba(16,21,29,.28); border:1px solid var(--border); }
+.toast-root{ bottom:22px; inset-inline-end:18px; }
+
+/* scrollbar — thin premium */
+.rail .nv-list, .notif-panel .np-list, .search-results{
+  scrollbar-width:thin; scrollbar-color:var(--border-2) transparent;
+}
+.rail .nv-list::-webkit-scrollbar, .notif-panel .np-list::-webkit-scrollbar{ width:6px; height:6px; }
+.rail .nv-list::-webkit-scrollbar-thumb{ background:var(--border-2); border-radius:999px; }
+
+/* focus */
+:focus-visible{ outline:2px solid var(--brand); outline-offset:2px; border-radius:8px; }
+
+/* content entrance */
+.page.is-active{ animation:none; }
+.page.is-active > *{ animation:fadeUp .42s var(--ease-out) both; }
+.page.is-active > *:nth-child(2){ animation-delay:.05s; }
+.page.is-active > *:nth-child(3){ animation-delay:.1s; }
+.page.is-active > *:nth-child(4){ animation-delay:.15s; }
+.page.is-active > *:nth-child(5){ animation-delay:.2s; }
+
+/* ensure light/dark coherent for all new premium surfaces */
+[data-theme="light"] .pcard, [data-theme="light"] .fee, [data-theme="light"] .prof-band{
+  /* keep dark cinematic for hero cards even in light — intentional premium contrast */
+  color:#fff;
+}

@@ -36,3 +36,16 @@
     boot();
   }
 })();
+
+// premium v9: topbar scrolled state
+(function(){
+  function initTb(){
+    var tb=document.querySelector('.topbar');
+    if(!tb) return;
+    function onScroll(){ tb.classList.toggle('is-scrolled', window.scrollY>8); }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', initTb);
+  else initTb();
+})();
